@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Super Eco Hero</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="game">
+
+        <!-- HEADER -->
+        <div class="top-bar">
+
+            <div class="game-title">
+                🦸 SUPER ECO HERO
+            </div>
+
+            <div class="score-box">
+                ⭐ <span id="score">0</span>
+            </div>
+            <button id="soundButton" class="sound-button">
+                🔊
+            </button>
+
+        </div>
+
+
+        <!-- START SCREEN -->
+        <div class="start-screen" id="startScreen">
+
+            <div class="hero-icon">🦸‍♀️</div>
+
+            <h1>SUPER ECO HERO</h1>
+
+            <p>
+                Arahkan tanganmu untuk<br>
+                menyelamatkan bumi! 🌍
+            </p>
+
+            <button id="startButton">
+                🚀 MULAI!
+            </button>
+
+        </div>
+
+
+        <!-- CAMERA ARENA -->
+        <div class="camera-box" id="cameraBox">
+
+            <video id="camera" autoplay playsinline></video>
+
+            <div class="camera-overlay"></div>
+
+
+            <!-- INSTRUCTION -->
+            <div class="instruction" id="instruction">
+                🖐️ Arahkan tangan ke sampah!
+            </div>
+
+
+            <!-- TRASH WILL APPEAR HERE -->
+            <div id="trashLayer"></div>
+
+
+            <!-- FEEDBACK -->
+            <div id="answerFeedback" class="answer-feedback"></div>
+            <div id="comboPopup" class="combo-popup"></div>
+
+
+            <!-- TARGET INDICATOR -->
+            <div id="targetMessage" class="target-message"></div>
+
+
+            <!-- BINS -->
+            <div class="bins">
+
+                <div
+                    id="organicBin"
+                    class="bin organic"
+                    data-type="organic"
+                >
+                    <div class="bin-icon">
+                        <img src="Asset/organic_bin.png" alt="Organik">
+                    </div>
+                    <div class="bin-name">ORGANIK</div>
+                </div>
+
+
+                <div
+                    id="inorganicBin"
+                    class="bin inorganic"
+                    data-type="inorganic"
+                >
+                    <div class="bin-icon">
+                         <img src="Asset/anorganic_bin.png" alt="Anorganik">
+                        </div>
+                    <div class="bin-name">ANORGANIK</div>
+                </div>
+
+
+                <div
+                    id="b3Bin"
+                    class="bin b3"
+                    data-type="b3"
+                >
+                    <div class="bin-icon">
+                        <img src="Asset/b3_bin.png" alt="B3">
+                    </div>
+                    <div class="bin-name">B3</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FINISH MESSAGE -->
+        <div id="finishMessage" class="finish-message">
+
+            <div class="finish-card">
+
+                <div class="finish-emoji">
+                    🏆🌍
+                </div>
+
+                <h2>MISSION COMPLETE!</h2>
+
+                <p>
+                    Bumi berhasil diselamatkan! 🌱
+                </p>
+
+                <div class="final-score">
+                    ⭐ <span id="finalScore">0</span>
+                </div>
+
+                <button id="restartButton">
+                    🔄 MAIN LAGI
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MEDIAPIPE -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+
+
+    <!-- GAME -->
+    <script src="game.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1536 @@
+/* =========================================
+   🦸 SUPER ECO HERO
+   CUTE CARTOON GAME STYLE
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: #8edcff;
+}
+
+
+/* =========================================
+   🌍 GAME WORLD
+========================================= */
+
+.game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    background-image: url("Asset/background.png");
+    background-size: cover;
+    background-position: center;background-repeat: no-repeat;
+}
+
+
+/* Decorative clouds */
+
+.game::before,
+.game::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    opacity: 0.85;
+}
+
+.game::before {
+    width: 180px;
+    height: 65px;
+    top: 80px;
+    left: 8%;
+
+    background: white;
+    border-radius: 80px;
+
+    box-shadow:
+        55px 5px 0 -5px white,
+        100px 15px 0 -10px white;
+}
+
+.game::after {
+    width: 150px;
+    height: 55px;
+    top: 145px;
+    right: 10%;
+
+    background: white;
+    border-radius: 80px;
+
+    box-shadow:
+        45px -5px 0 -5px white,
+        90px 10px 0 -12px white;
+}
+
+
+/* =========================================
+   🦸 TITLE
+========================================= */
+
+.game > h1 {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 1000;
+
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    color: white;
+
+    text-shadow:
+        0 4px 0 #1768a5,
+        0 7px 10px rgba(0,0,0,0.25);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   ⭐ SCORE
+========================================= */
+
+#score {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    z-index: 1000;
+
+    min-width: 120px;
+
+    padding: 10px 20px;
+
+    background: white;
+
+    border: 4px solid #ffcc33;
+    border-radius: 30px;
+
+    color: #f39c12;
+
+    font-size: 24px;
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 6px 0 #d89d13,
+        0 8px 18px rgba(0,0,0,0.2);
+}
+
+
+/* =========================================
+   🚀 START SCREEN
+========================================= */
+
+#startScreen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5ed7ff,
+            #7ce48a
+        );
+}
+
+.start-content {
+    width: min(90%, 560px);
+
+    padding: 45px 35px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.96);
+
+    border: 6px solid white;
+    border-radius: 35px;
+
+    box-shadow:
+        0 12px 0 rgba(0,0,0,0.12),
+        0 25px 50px rgba(0,0,0,0.2);
+}
+
+.start-content > div {
+    animation: heroFloat 2s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.start-content h1 {
+    margin-top: 10px;
+
+    font-size: clamp(32px, 6vw, 60px);
+
+    color: #1d76b9;
+
+    text-shadow:
+        0 4px 0 #aee7ff;
+}
+
+.start-content p {
+    margin: 20px 0 30px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #4c6470;
+}
+
+#startButton,
+#restartButton {
+
+    border: none;
+
+    padding: 16px 38px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            #ffd84d,
+            #ffad20
+        );
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #d98a0b,
+        0 10px 20px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+}
+
+#startButton:hover,
+#restartButton:hover {
+    transform: translateY(-3px);
+}
+
+#startButton:active,
+#restartButton:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 3px 0 #d98a0b;
+}
+
+
+/* =========================================
+   🎮 MAIN ARENA
+========================================= */
+
+#cameraBox {
+
+    position: absolute;
+
+    left: 50%;
+    top: 53%;
+
+    transform: translate(-50%, -50%);
+
+    width: 94vw;
+    height: 88vh;
+
+    max-width: 1550px;
+
+    overflow: hidden;
+
+    border: 7px solid white;
+    border-radius: 38px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.1),
+            rgba(255,255,255,0)
+        );
+
+    box-shadow:
+        0 15px 0 rgba(24,100,70,0.25),
+        0 25px 50px rgba(0,0,0,0.25);
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   📷 CAMERA WINDOW
+========================================= */
+
+#camera {
+
+    position: absolute;
+
+    width: 36%;
+    height: 30%;
+
+    left: 50%;
+    top: 7%;
+
+    transform: translateX(-50%);
+
+    object-fit: cover;
+
+    border: 6px solid white;
+    border-radius: 28px;
+
+    background: #222;
+
+    box-shadow:
+        0 8px 0 rgba(0,0,0,0.15),
+        0 12px 30px rgba(0,0,0,0.25);
+
+    z-index: 20;
+}
+
+
+/* Camera frame decoration */
+
+.camera-overlay {
+
+    position: absolute;
+
+    left: 32%;
+    top: 7%;
+
+    width: 36%;
+    height: 30%;
+
+    border: 4px solid rgba(255,255,255,0.65);
+
+    border-radius: 28px;
+
+    pointer-events: none;
+
+    z-index: 25;
+}
+
+
+/* =========================================
+   📝 INSTRUCTION
+========================================= */
+
+.instruction {
+
+    position: absolute;
+
+    left: 50%;
+    top: 39%;
+
+    transform: translateX(-50%);
+
+    z-index: 200;
+
+    padding: 10px 24px;
+
+    background: rgba(255,255,255,0.94);
+
+    border: 4px solid #5bc0eb;
+
+    border-radius: 30px;
+
+    color: #23627c;
+
+    font-size: clamp(14px, 1.5vw, 21px);
+    font-weight: 900;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 6px 0 rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   🗑️ TRASH LAYER
+========================================= */
+
+#trashLayer {
+    position: absolute;
+    inset: 0;
+
+    z-index: 100;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   🍌 TRASH OBJECT
+========================================= */
+
+.trash-object {
+
+    position: absolute;
+
+    width: 82px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef7ff
+        );
+
+    border: 5px solid white;
+
+    border-radius: 50%;
+
+    font-size: 48px;
+
+    cursor: default;
+
+    box-shadow:
+        0 7px 0 rgba(0,0,0,0.15),
+        0 10px 20px rgba(0,0,0,0.18);
+
+    animation:
+        trashFloat 2.5s ease-in-out infinite;
+
+    transition:
+        box-shadow 0.2s,
+        border-color 0.2s;
+
+    user-select: none;
+}
+
+
+@keyframes trashFloat {
+
+    0%,100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -8px;
+    }
+}
+
+
+/* =========================================
+   🧲 TARGET HIGHLIGHT
+========================================= */
+
+.trash-object.target-trash {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.18) !important;
+
+    border-color: #ffe04a !important;
+
+    box-shadow:
+        0 0 0 8px rgba(255,224,74,0.35),
+        0 0 30px rgba(255,224,74,0.9),
+        0 8px 20px rgba(0,0,0,0.2) !important;
+
+    animation:
+        targetPulse 0.8s ease-in-out infinite !important;
+
+    z-index: 120 !important;
+}
+
+
+@keyframes targetPulse {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+    }
+}
+
+
+/* =========================================
+   ✋ CARRIED TRASH
+========================================= */
+
+.trash-object.selected,
+.trash-object.carried {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.25) !important;
+
+    border-color: #5ee7ff;
+
+    box-shadow:
+        0 0 0 8px rgba(94,231,255,0.25),
+        0 0 35px rgba(94,231,255,0.9),
+        0 10px 25px rgba(0,0,0,0.25);
+
+    animation: none !important;
+
+    z-index: 300;
+}
+
+
+/* =========================================
+   🗑️ BINS
+========================================= */
+
+.bin {
+
+    position: absolute;
+
+    bottom: 24px;
+
+    width: 190px;
+    height: 135px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 6px solid white;
+
+    border-radius: 30px 30px 42px 42px;
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 0 rgba(0,0,0,0.18),
+        0 15px 30px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+    z-index: 150;
+}
+
+
+/* Bin label */
+
+.bin strong {
+
+    display: block;
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 2px 0 rgba(0,0,0,0.2);
+}
+
+
+/* =========================================
+   🌿 ORGANIC
+========================================= */
+
+.bin.organic {
+
+    left: 5%;
+
+    background:
+        linear-gradient(
+            #71df72,
+            #31a94e
+        );
+
+    border-color: #d9ffd8;
+}
+
+
+/* =========================================
+   ♻️ INORGANIC
+========================================= */
+
+.bin.inorganic {
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            #63cfff,
+            #287bc4
+        );
+
+    border-color: #d8f5ff;
+}
+
+
+/* =========================================
+   ☠️ B3
+========================================= */
+
+.bin.b3 {
+
+    right: 5%;
+
+    background:
+        linear-gradient(
+            #ff7272,
+            #d93636
+        );
+
+    border-color: #ffe0e0;
+}
+
+
+/* =========================================
+   🎯 BIN TARGET
+========================================= */
+
+.bin.target {
+
+    transform:
+        translateY(-12px)
+        scale(1.08);
+
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,0.45),
+        0 0 35px rgba(255,255,255,0.9),
+        0 14px 0 rgba(0,0,0,0.18);
+
+    animation:
+        binPulse 0.55s ease-in-out infinite alternate;
+}
+
+
+.bin.inorganic.target {
+
+    transform:
+        translateX(-50%)
+        translateY(-12px)
+        scale(1.08);
+}
+
+
+@keyframes binPulse {
+
+    from {
+        filter: brightness(1);
+    }
+
+    to {
+        filter: brightness(1.2);
+    }
+}
+
+
+/* =========================================
+   🧲 TARGET MESSAGE
+========================================= */
+
+.target-message {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 180px;
+
+    transform: translateX(-50%);
+
+    z-index: 500;
+
+    padding: 8px 20px;
+
+    background: rgba(255,255,255,0.95);
+
+    border-radius: 25px;
+
+    color: #26718d;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    box-shadow:
+        0 5px 0 rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   ✋ HAND CURSOR
+========================================= */
+
+#testHand {
+
+    position: absolute;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 1000;
+
+    font-size: 55px;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 5px 5px rgba(0,0,0,0.25));
+
+    transition:
+        left 0.04s linear,
+        top 0.04s linear;
+}
+
+
+/* =========================================
+   ✅❌ FEEDBACK
+========================================= */
+
+.answer-feedback {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    z-index: 2000;
+
+    font-size: 120px;
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+
+.answer-feedback.show {
+
+    animation:
+        feedbackPop 0.8s ease forwards;
+}
+
+
+@keyframes feedbackPop {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.3);
+    }
+
+    35% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.3);
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+}
+
+
+/* =========================================
+   🏆 FINISH SCREEN
+========================================= */
+
+#finishMessage {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 6000;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(21,96,125,0.75);
+
+    backdrop-filter:
+        blur(8px);
+
+    text-align: center;
+}
+
+
+#finishMessage.show {
+    display: flex;
+}
+
+
+#finishMessage > div {
+
+    width: min(90%, 500px);
+
+    padding: 45px 35px;
+
+    background: white;
+
+    border-radius: 35px;
+
+    border: 7px solid #ffd84d;
+
+    box-shadow:
+        0 15px 0 rgba(0,0,0,0.18),
+        0 25px 50px rgba(0,0,0,0.3);
+
+    animation:
+        finishPop 0.5s ease;
+}
+
+
+@keyframes finishPop {
+
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+#finishMessage h2 {
+
+    margin: 10px 0;
+
+    font-size: 36px;
+
+    color: #269b58;
+}
+
+
+#finishMessage p {
+
+    margin: 12px 0;
+
+    color: #58717b;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+#finalScore {
+
+    font-size: 42px;
+
+    color: #f2a900;
+
+    font-weight: 900;
+
+    display: inline-block;
+
+    margin: 10px 0 25px;
+}
+
+
+/* =========================================
+   📱 RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    #cameraBox {
+        width: 96vw;
+        height: 88vh;
+    }
+
+    #camera {
+        width: 48%;
+        height: 28%;
+    }
+
+    .camera-overlay {
+        left: 26%;
+        width: 48%;
+        height: 28%;
+    }
+
+    .bin {
+        width: 145px;
+        height: 110px;
+    }
+
+    .bin strong {
+        font-size: 15px;
+    }
+
+    .trash-object {
+        width: 68px;
+        height: 68px;
+        font-size: 40px;
+    }
+
+    #testHand {
+        font-size: 45px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .game > h1 {
+        font-size: 20px;
+        top: 14px;
+    }
+
+    #score {
+        top: 12px;
+        right: 12px;
+
+        min-width: 90px;
+
+        padding: 7px 12px;
+
+        font-size: 18px;
+    }
+
+    #cameraBox {
+        height: 90vh;
+    }
+
+    #camera {
+        width: 55%;
+        height: 25%;
+    }
+
+    .camera-overlay {
+        left: 22.5%;
+        width: 55%;
+        height: 25%;
+    }
+
+    .instruction {
+        top: 34%;
+
+        font-size: 13px;
+
+        padding: 7px 13px;
+    }
+
+    .bin {
+        width: 105px;
+        height: 85px;
+
+        bottom: 15px;
+
+        border-width: 4px;
+        border-radius: 22px;
+    }
+
+    .bin strong {
+        font-size: 11px;
+    }
+
+    .trash-object {
+        width: 58px;
+        height: 58px;
+
+        font-size: 34px;
+    }
+
+    .target-message {
+        bottom: 120px;
+
+        font-size: 14px;
+    }
+}
+/* =========================================
+   🗑️ TRASH ENTERING BIN EFFECT
+========================================= */
+
+.trash-object.sorting {
+    z-index: 2000 !important;
+
+    animation: trashIntoBin 0.45s ease-in forwards !important;
+
+    pointer-events: none;
+}
+
+
+@keyframes trashIntoBin {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    40% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.4)
+            rotate(-8deg);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.15)
+            rotate(20deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   ✨ BIN SUCCESS EFFECT
+========================================= */
+
+.bin.success {
+
+    animation:
+        binSuccess 0.65s ease-in-out !important;
+
+    z-index: 300 !important;
+}
+
+
+@keyframes binSuccess {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    30% {
+        transform:
+            translateY(-18px)
+            scale(1.15);
+    }
+
+    55% {
+        transform:
+            translateY(0)
+            scale(1.05);
+    }
+
+    75% {
+        transform:
+            translateY(-8px)
+            scale(1.1);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+.bin.inorganic.success {
+
+    animation:
+        binSuccessMiddle 0.65s ease-in-out !important;
+}
+
+
+@keyframes binSuccessMiddle {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+
+    30% {
+        transform:
+            translateX(-50%)
+            translateY(-18px)
+            scale(1.15);
+    }
+
+    55% {
+        transform:
+            translateX(-50%)
+            scale(1.05);
+    }
+
+    75% {
+        transform:
+            translateX(-50%)
+            translateY(-8px)
+            scale(1.1);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+}
+/* ==========================================
+   🦸 SUPER ECO HERO HAND CURSOR
+========================================== */
+
+#testHand {
+    width: 90px !important;
+    height: 90px !important;
+
+    background-image: url("./Asset/hand_cursor.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-size: 0 !important;
+
+    pointer-events: none;
+
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1000;
+
+    filter:
+        drop-shadow(0 5px 8px rgba(0,0,0,0.25));
+}
+/* 🔊 SOUND BUTTON */
+
+.sound-button {
+    position: fixed;
+    top: 150px;
+    right: 25px;
+    z-index: 9999;
+
+    width: 52px;
+    height: 52px;
+
+    border: 4px solid white;
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 26px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.15s ease,
+                box-shadow 0.15s ease;
+}
+
+.sound-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sound-button:active {
+    transform: scale(0.92);
+}
+/* ==========================================
+   🔥 COMBO POP-UP
+   ========================================== */
+
+.combo-popup {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%) scale(0);
+
+    z-index: 3000;
+    pointer-events: none;
+
+    text-align: center;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    color: white;
+
+    text-shadow:
+        0 4px 0 #ff7a00,
+        0 7px 12px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+}
+
+
+.combo-popup.show {
+    animation: comboPop 0.9s ease-out forwards;
+}
+
+
+.combo-popup .combo-text {
+    font-size: 22px;
+    margin-top: 4px;
+
+    color: #fff8b5;
+
+    text-shadow:
+        0 3px 0 #ff7a00,
+        0 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes comboPop {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.3)
+            rotate(-8deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.25)
+            rotate(3deg);
+    }
+
+    55% {
+        transform:
+            translate(-50%, -50%)
+            scale(1)
+            rotate(0deg);
+    }
+
+    80% {
+        opacity: 1;
+        transform:
+            translate(-50%, -55%)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -75%)
+            scale(0.9);
+    }
+}
+/* =========================================
+   🌟 COMBO x5 SPECIAL EFFECT
+========================================= */
+
+.combo-popup.special {
+    font-size: 52px;
+
+    text-shadow:
+        0 5px 0 #ffb300,
+        0 8px 20px rgba(255, 140, 0, 0.5);
+
+    animation: comboSpecial 1.1s ease-out forwards;
+}
+
+@keyframes comboSpecial {
+
+    0% {
+        transform: translate(-50%, -50%) scale(0.2) rotate(-8deg);
+        opacity: 0;
+    }
+
+    25% {
+        transform: translate(-50%, -50%) scale(1.4) rotate(5deg);
+        opacity: 1;
+    }
+
+    45% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(-3deg);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translate(-50%, -55%) scale(1.2) rotate(2deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -75%) scale(0.8) rotate(0deg);
+        opacity: 0;
+    }
+}
+/* =========================================
+   🗑️ CUSTOM BIN ASSETS
+========================================= */
+
+.bin-icon {
+    width: 150px;
+    height: 115px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: visible;
+}
+
+.bin-icon img {
+    width: 150px;
+    height: 115px;
+
+    object-fit: contain;
+
+    display: block;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 8px 8px rgba(0, 0, 0, 0.18));
+}
+/* =========================================
+   🗑️ CLEAN CUSTOM BIN DESIGN
+========================================= */
+
+.bin {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+
+    width: 245px;
+    height: 210px;
+
+    box-shadow: none !important;
+
+    overflow: visible;
+
+    padding: 0;
+}
+
+.bin-icon {
+    width: 215px;
+    height: 175px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: visible;
+}
+
+.bin-icon img {
+    width: 215px;
+    height: 175px;
+
+    object-fit: contain;
+    display: block;
+
+    filter:
+        drop-shadow(0 8px 8px rgba(0, 0, 0, 0.20));
+}
+
+.bin-name {
+    margin-top: 2px;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    color: white;
+
+    text-shadow:
+        0 3px 0 rgba(0, 0, 0, 0.25),
+        0 5px 10px rgba(0, 0, 0, 0.18);
+
+    letter-spacing: 1px;
+}
+/* =========================================
+   🦸 SUPER ECO HERO — GAME HUD
+========================================= */
+
+.top-bar {
+    padding: 14px 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+
+    border-bottom: 3px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    position: relative;
+    z-index: 2000;
+}
+
+.game-title {
+    font-size: 28px;
+    font-weight: 1000;
+    letter-spacing: 1px;
+
+    color: white;
+
+    text-shadow:
+        0 3px 0 #287aa5,
+        0 5px 10px rgba(0, 0, 0, 0.18);
+}
+
+.score-box {
+    margin-left: auto;
+
+    min-width: 105px;
+    padding: 8px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    background: white;
+
+    border: 4px solid #ffc928;
+    border-radius: 30px;
+
+    color: #f2a900;
+
+    font-size: 22px;
+    font-weight: 1000;
+
+    box-shadow:
+        0 6px 0 #d99d00,
+        0 8px 18px rgba(0, 0, 0, 0.15);
+}
+/* =========================================
+   📷 HERO CAMERA
+========================================= */
+
+.camera-box video {
+    border-radius: 28px;
+
+    border: 6px solid white;
+
+    box-shadow:
+        0 8px 0 rgba(38, 113, 141, 0.25),
+        0 12px 25px rgba(0, 0, 0, 0.18);
+
+    object-fit: cover;
+}
+/* =========================================
+   🎯 BIN TARGET EFFECT
+========================================= */
+
+.bin.target {
+    filter:
+        drop-shadow(0 0 8px rgba(255, 255, 255, 0.9))
+        drop-shadow(0 0 18px rgba(255, 224, 74, 0.9));
+
+    transform: translateY(-10px) scale(1.10);
+
+    z-index: 500;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+/* Tong tengah tetap berada di posisi tengah */
+.bin.inorganic.target {
+    transform:
+        translateX(-50%)
+        translateY(-10px)
+        scale(1.10);
+}
+
+.bin.target .bin-icon img {
+    animation: targetGlow 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes targetGlow {
+
+    from {
+        filter:
+            drop-shadow(0 5px 5px rgba(0, 0, 0, 0.18));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+    }
+}
