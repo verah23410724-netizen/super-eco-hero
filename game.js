@@ -1636,8 +1636,8 @@ pose.onResults(results => {
     // ======================================
 
     const targetX =
-        wrist.x *
-        boxWidth;
+         (1 - wrist.x) *
+         boxWidth;
 
 
     const targetY =
