@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Super Eco Hero</title>
+    <title>Super Eco Hero 🌍</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -23,30 +24,32 @@
             <div class="score-box">
                 ⭐ <span id="score">0</span>
             </div>
+
             <button id="soundButton" class="sound-button">
                 🔊
             </button>
 
         </div>
 
-
         <!-- START SCREEN -->
-        <div class="start-screen" id="startScreen">
+        
+<div class="start-screen" id="startScreen">
 
-            <div class="hero-icon">🦸‍♀️</div>
+    <img
+        src="Asset/super-eco-hero-home.png"
+        alt="Super Eco Hero"
+        class="home-screen-image"
+    >
+    <button
+    type="button"
+    id="homeStartArea"
+    aria-label="Mulai Misi">
+</button>
+    <button id="startButton" type="button" hidden>
+        MULAI MISI!
+    </button>
 
-            <h1>SUPER ECO HERO</h1>
-
-            <p>
-                Arahkan tanganmu untuk<br>
-                menyelamatkan bumi! 🌍
-            </p>
-
-            <button id="startButton">
-                🚀 MULAI!
-            </button>
-
-        </div>
+</div>
 
 
         <!-- CAMERA ARENA -->
@@ -56,25 +59,20 @@
 
             <div class="camera-overlay"></div>
 
-
             <!-- INSTRUCTION -->
             <div class="instruction" id="instruction">
                 🖐️ Arahkan tangan ke sampah!
             </div>
 
-
-            <!-- TRASH WILL APPEAR HERE -->
+            <!-- TRASH -->
             <div id="trashLayer"></div>
-
 
             <!-- FEEDBACK -->
             <div id="answerFeedback" class="answer-feedback"></div>
             <div id="comboPopup" class="combo-popup"></div>
 
-
             <!-- TARGET INDICATOR -->
             <div id="targetMessage" class="target-message"></div>
-
 
             <!-- BINS -->
             <div class="bins">
@@ -90,18 +88,16 @@
                     <div class="bin-name">ORGANIK</div>
                 </div>
 
-
                 <div
                     id="inorganicBin"
                     class="bin inorganic"
                     data-type="inorganic"
                 >
                     <div class="bin-icon">
-                         <img src="Asset/anorganic_bin.png" alt="Anorganik">
-                        </div>
+                        <img src="Asset/anorganic_bin.png" alt="Anorganik">
+                    </div>
                     <div class="bin-name">ANORGANIK</div>
                 </div>
-
 
                 <div
                     id="b3Bin"
@@ -117,7 +113,6 @@
             </div>
 
         </div>
-
 
         <!-- FINISH MESSAGE -->
         <div id="finishMessage" class="finish-message">
@@ -138,7 +133,7 @@
                     ⭐ <span id="finalScore">0</span>
                 </div>
 
-                <button id="restartButton">
+                <button id="restartButton" type="button">
                     🔄 MAIN LAGI
                 </button>
 
@@ -148,17 +143,23 @@
 
     </div>
 
-
     <!-- MEDIAPIPE -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
-
 
     <!-- GAME -->
     <script src="game.js"></script>
+
+<script>
+    const homeStartArea = document.getElementById("homeStartArea");
+    const gameStartButton = document.getElementById("startButton");
+
+    homeStartArea.addEventListener("click", function() {
+        console.log("TOMBOL MULAI DIKLIK!");
+        gameStartButton.click();
+    });
+</script>
 
 </body>
 </html>
