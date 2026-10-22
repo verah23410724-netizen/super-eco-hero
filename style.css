@@ -1534,3 +1534,7 @@ body {
             drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
     }
 }
+/* 📷 Kamera tidak mirror */
+#camera {
+    transform: translateX(-50%) scaleX(-1);
+}
