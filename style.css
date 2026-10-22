@@ -1538,3 +1538,127 @@ body {
 #camera {
     transform: translateX(-50%) scaleX(-1);
 }
+
+/* =====================================
+   🌍 SUPER ECO HERO - NEW HOME SCREEN
+===================================== */
+
+#startScreen {
+    position: absolute;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #8be4ff, #b9f5bd);
+}
+
+.home-screen-image {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 24px;
+    filter: drop-shadow(0 8px 0 rgba(49, 130, 90, 0.2));
+}
+
+.home-start-button {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    padding: 14px 36px;
+    border: 4px solid white;
+    border-radius: 50px;
+    background: linear-gradient(180deg, #ffe96a, #ffad32);
+    color: #704000;
+    font-family: inherit;
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 7px 0 #d98a20, 0 10px 20px #0002;
+    transition: transform 0.15s ease;
+}
+
+.home-start-button:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+.home-start-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #d98a20;
+}
+
+@media (max-width: 600px) {
+    #startScreen {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .home-screen-image {
+        max-height: 72vh;
+        border-radius: 16px;
+    }
+
+    .home-start-button {
+        padding: 12px 28px;
+    }
+}
+
+/* FIX: FULL SCREEN HOME */
+#startScreen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5ac9e5;
+    z-index: 99999;
+}
+
+.home-screen-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 0;
+    filter: none;
+}
+
+#startButton {
+    display: none !important;
+}
+
+/* Tombol klik transparan di atas tombol pada gambar */
+#homeStartArea {
+    position: absolute;
+    left: 50%;
+    top: 64%;
+    transform: translate(-50%, -50%);
+    width: 34%;
+    height: 17%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 100001;
+}
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+
