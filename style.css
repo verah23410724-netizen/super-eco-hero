@@ -1662,3 +1662,25 @@ body {
     z-index: 99999;
 }
 
+/* RESPONSIVE HOME SCREEN UNTUK HP */
+@media screen and (max-width: 600px) {
+    #startScreen {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .home-screen-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    #homeStartArea {
+        left: 50%;
+        top: 64%;
+        width: 48%;
+        height: 12%;
+        transform: translate(-50%, -50%);
+    }
+}
