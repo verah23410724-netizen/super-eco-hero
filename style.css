@@ -1678,9 +1678,123 @@ body {
 
     #homeStartArea {
     left: 50%;
-    top: 64%;
-    width: 60%;
-    height: 15%;
+    top: 70%;
+    width: 40%;
+    height: 10%;
     transform: translate(-50%, -50%);
 }
+}
+
+/* FIX TAMPILAN GAME DI HP */
+@media screen and (max-width: 600px) {
+    body {
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .game {
+        width: 100%;
+        height: 100%;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .game > h1 {
+        top: 10px;
+        left: 12px;
+        transform: none;
+        max-width: 58%;
+        font-size: clamp(16px, 4.5vw, 22px);
+        line-height: 1.1;
+        white-space: normal;
+        letter-spacing: 0;
+    }
+
+    #score {
+        top: 10px;
+        right: 10px;
+        min-width: 70px;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+
+    #cameraBox {
+        top: 53%;
+        width: 96vw;
+        height: 84dvh;
+        border-width: 4px;
+        border-radius: 24px;
+    }
+
+    #camera {
+        top: 5%;
+        width: 52%;
+        height: 22%;
+        border-width: 4px;
+        border-radius: 20px;
+    }
+
+    .camera-overlay {
+        top: 5%;
+        left: 24%;
+        width: 52%;
+        height: 22%;
+    }
+
+    .instruction {
+        top: 30%;
+        max-width: 88%;
+        white-space: normal;
+        text-align: center;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .bin {
+        bottom: 18px;
+        width: 31%;
+        height: 125px;
+    }
+
+    .bin-icon,
+    .bin-icon img {
+        width: 100%;
+        height: 90px;
+    }
+
+    .bin-name {
+        margin-top: 0;
+        font-size: clamp(10px, 2.8vw, 14px);
+        letter-spacing: 0;
+    }
+
+    .bin.organic {
+        left: 1%;
+    }
+
+    .bin.inorganic {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bin.b3 {
+        right: 1%;
+    }
+
+    .target-message {
+        bottom: 145px;
+        max-width: 90%;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .sound-button {
+        top: 100px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
 }
