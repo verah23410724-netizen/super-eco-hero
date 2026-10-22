@@ -1677,11 +1677,17 @@ body {
     }
 
     #homeStartArea {
+    position: absolute;
     left: 50%;
-    top: 70%;
-    width: 40%;
-    height: 10%;
+    top: 64%;
     transform: translate(-50%, -50%);
+    width: 42%;
+    height: 10%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 100001;
 }
 }
 
