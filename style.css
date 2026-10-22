@@ -1677,10 +1677,10 @@ body {
     }
 
     #homeStartArea {
-        left: 50%;
-        top: 64%;
-        width: 48%;
-        height: 12%;
-        transform: translate(-50%, -50%);
-    }
+    left: 50%;
+    top: 64%;
+    width: 60%;
+    height: 15%;
+    transform: translate(-50%, -50%);
+}
 }
